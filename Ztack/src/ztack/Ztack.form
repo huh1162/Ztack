@@ -23,13 +23,189 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="1137" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="cardOne1" min="-2" pref="173" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="cardOne2" min="-2" pref="173" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="cardOne3" min="-2" pref="173" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="cardOne4" min="-2" pref="173" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="cardOne5" min="-2" pref="173" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="cardOne6" min="-2" pref="173" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="200" max="-2" attributes="0"/>
+                      <Component id="cardTwo1" min="-2" pref="106" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <Component id="cardTwo2" min="-2" pref="106" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="cardTwo3" min="-2" pref="106" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="cardTwo4" min="-2" pref="106" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="pile" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="cardTwo5" min="-2" pref="106" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="cardTwo6" min="-2" pref="106" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
+                              <Component id="deck" min="-2" pref="159" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jLabel1" max="32767" attributes="0"/>
+                          <Component id="endGame" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel2" alignment="0" pref="103" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace pref="14" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="742" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="cardTwo4" min="-2" pref="148" max="-2" attributes="0"/>
+                  <Component id="cardTwo2" min="-2" pref="148" max="-2" attributes="0"/>
+                  <Component id="cardTwo1" alignment="0" min="-2" pref="148" max="-2" attributes="0"/>
+                  <Component id="cardTwo3" alignment="0" min="-2" pref="148" max="-2" attributes="0"/>
+                  <Component id="cardTwo5" alignment="0" min="-2" pref="148" max="-2" attributes="0"/>
+                  <Component id="cardTwo6" min="-2" pref="148" max="-2" attributes="0"/>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="deck" min="-2" pref="177" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="80" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="pile" min="-2" pref="198" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="cardOne6" min="-2" pref="242" max="-2" attributes="0"/>
+                      <Component id="cardOne1" min="-2" pref="242" max="-2" attributes="0"/>
+                      <Component id="cardOne2" min="-2" pref="242" max="-2" attributes="0"/>
+                      <Component id="cardOne3" alignment="1" min="-2" pref="242" max="-2" attributes="0"/>
+                      <Component id="cardOne4" alignment="1" min="-2" pref="242" max="-2" attributes="0"/>
+                      <Component id="cardOne5" alignment="1" min="-2" pref="242" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                      <Component id="endGame" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JToggleButton" name="cardOne1">
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="cardOne2">
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="cardOne3">
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="cardOne4">
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="cardOne5">
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="cardOne6">
+    </Component>
+    <Component class="javax.swing.JLabel" name="cardTwo1">
+    </Component>
+    <Component class="javax.swing.JLabel" name="cardTwo2">
+    </Component>
+    <Component class="javax.swing.JLabel" name="cardTwo3">
+    </Component>
+    <Component class="javax.swing.JLabel" name="cardTwo4">
+    </Component>
+    <Component class="javax.swing.JLabel" name="cardTwo5">
+    </Component>
+    <Component class="javax.swing.JLabel" name="cardTwo6">
+    </Component>
+    <Component class="javax.swing.JButton" name="deck">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Draw"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="pile">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Exchange"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Points: 0"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="endGame">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="End Game"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="Total Points"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="PLAYER_Name:                  0"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="CPU 1:                              0"/>
+      </Properties>
+    </Component>
+  </SubComponents>
 </Form>
