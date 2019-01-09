@@ -41,11 +41,11 @@ public class Ztack extends javax.swing.JFrame {
         cardTwo6 = new javax.swing.JLabel();
         deck = new javax.swing.JButton();
         pile = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        handPoint = new javax.swing.JLabel();
         endGame = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        totalPointLabel = new javax.swing.JLabel();
+        totalPointPlayer = new javax.swing.JLabel();
+        totalPointCPU = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,16 +53,16 @@ public class Ztack extends javax.swing.JFrame {
 
         pile.setText("Exchange");
 
-        jLabel1.setText("Points: 0");
+        handPoint.setText("Points: 0");
 
         endGame.setText("End Round");
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Total Points");
+        totalPointLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        totalPointLabel.setText("Total Points");
 
-        jLabel3.setText("PLAYER_Name:                  0");
+        totalPointPlayer.setText("PLAYER_Name:                  0");
 
-        jLabel4.setText("CPU 1:                              0");
+        totalPointCPU.setText("CPU 1:                              0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -109,15 +109,15 @@ public class Ztack extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(handPoint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(endGame)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
+                            .addComponent(totalPointLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3))
+                            .addComponent(totalPointCPU)
+                            .addComponent(totalPointPlayer))
                         .addGap(116, 116, 116))))
         );
         layout.setVerticalGroup(
@@ -134,16 +134,16 @@ public class Ztack extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addComponent(jLabel2)
+                        .addComponent(totalPointLabel)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(22, 22, 22)
                                 .addComponent(deck, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3)
+                                .addComponent(totalPointPlayer)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel4)))
+                                .addComponent(totalPointCPU)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -158,7 +158,7 @@ public class Ztack extends javax.swing.JFrame {
                         .addComponent(cardOne4, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cardOne5, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(handPoint)
                         .addGap(32, 32, 32)
                         .addComponent(endGame)))
                 .addContainerGap())
@@ -217,10 +217,10 @@ public class Ztack extends javax.swing.JFrame {
     private javax.swing.JLabel cardTwo6;
     private javax.swing.JButton deck;
     private javax.swing.JButton endGame;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel handPoint;
     private javax.swing.JButton pile;
+    private javax.swing.JLabel totalPointCPU;
+    private javax.swing.JLabel totalPointLabel;
+    private javax.swing.JLabel totalPointPlayer;
     // End of variables declaration//GEN-END:variables
 }
