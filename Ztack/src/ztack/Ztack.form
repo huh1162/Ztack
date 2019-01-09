@@ -188,7 +188,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="endGame">
       <Properties>
-        <Property name="text" type="java.lang.String" value="End Game"/>
+        <Property name="text" type="java.lang.String" value="End Round"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">

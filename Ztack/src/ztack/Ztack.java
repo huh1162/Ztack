@@ -55,7 +55,7 @@ public class Ztack extends javax.swing.JFrame {
 
         jLabel1.setText("Points: 0");
 
-        endGame.setText("End Game");
+        endGame.setText("End Round");
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Total Points");
