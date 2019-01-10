@@ -1,2 +1,2 @@
-# hello-world
-A hello world program
+# Ztack
+A simple card game.
