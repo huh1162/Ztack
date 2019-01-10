@@ -1,2 +1,0 @@
-# Ztack
-The game Ztack
