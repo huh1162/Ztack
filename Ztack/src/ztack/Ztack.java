@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package ztack;
-
+import java.util.Arrays;
+import java.util.Stack;
 /**
  *
  * @author henry
@@ -45,6 +46,42 @@ public class Ztack extends javax.swing.JFrame {
         endGame = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        cardOne1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cardOne1ActionPerformed(evt);
+            }
+        });
+
+        cardOne2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cardOne2ActionPerformed(evt);
+            }
+        });
+
+        cardOne3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cardOne3ActionPerformed(evt);
+            }
+        });
+
+        cardOne4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cardOne4ActionPerformed(evt);
+            }
+        });
+
+        cardOne5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cardOne5ActionPerformed(evt);
+            }
+        });
+
+        cardOne6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cardOne6ActionPerformed(evt);
+            }
+        });
 
         cardTwo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -202,6 +239,30 @@ public class Ztack extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_endGameActionPerformed
 
+    private void cardOne1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cardOne1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cardOne1ActionPerformed
+
+    private void cardOne2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cardOne2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cardOne2ActionPerformed
+
+    private void cardOne6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cardOne6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cardOne6ActionPerformed
+
+    private void cardOne5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cardOne5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cardOne5ActionPerformed
+
+    private void cardOne4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cardOne4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cardOne4ActionPerformed
+
+    private void cardOne3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cardOne3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cardOne3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -235,6 +296,42 @@ public class Ztack extends javax.swing.JFrame {
                 new Ztack().setVisible(true);
             }
         });
+        
+        String[] sortedDeck = new String[52];
+        Stack<String> deck = new Stack();
+        
+        for(int i = 0; i < 13; i++){ // Initializes the sorted deck
+            for(int j = 0; j < 4; j++){
+                switch (j) {
+                    case 0:
+                        sortedDeck[j*13+i] = (i+1) + " C";
+                        break;
+                    case 1:
+                        sortedDeck[j*13+i] = (i+1) + " D";
+                        break;
+                    case 2:
+                        sortedDeck[j*13+i] = (i+1) + " H";
+                        break;
+                    default:
+                        sortedDeck[j*13+i] = (i+1) + " S";
+                        break;
+                }
+            }
+        }
+        
+        int random;
+        for(int i = 0; i < 52; i++){ // Creates the randomized stack of cards
+            random = (int) (Math.random() * 52);
+            while (sortedDeck[random] == "0"){
+                random++;
+                random = random%52;
+            }
+            
+            deck.push(sortedDeck[random]);
+            sortedDeck[random] = "0";
+        }
+        
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
