@@ -19,6 +19,44 @@ public class Ztack extends javax.swing.JFrame {
         initComponents();
     }
 
+    public static Stack shuffleDeck(){
+        String[] sortedDeck = new String[52];
+        Stack<String> deck = new Stack();
+        
+        for(int i = 0; i < 13; i++){ // Initializes the sorted deck
+            for(int j = 0; j < 4; j++){
+                switch (j) {
+                    case 0:
+                        sortedDeck[j*13+i] = (i+1) + " C";
+                        break;
+                    case 1:
+                        sortedDeck[j*13+i] = (i+1) + " D";
+                        break;
+                    case 2:
+                        sortedDeck[j*13+i] = (i+1) + " H";
+                        break;
+                    default:
+                        sortedDeck[j*13+i] = (i+1) + " S";
+                        break;
+                }
+            }
+        }
+        
+        int random;
+        for(int i = 0; i < 52; i++){ // Creates the randomized stack of cards
+            random = (int) (Math.random() * 52);
+            while (sortedDeck[random] == "0"){
+                random++;
+                random = random%52;
+            }
+            
+            deck.push(sortedDeck[random]);
+            sortedDeck[random] = "0";
+        }
+        
+        return deck;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -297,41 +335,8 @@ public class Ztack extends javax.swing.JFrame {
             }
         });
         
-        String[] sortedDeck = new String[52];
-        Stack<String> deck = new Stack();
-        
-        for(int i = 0; i < 13; i++){ // Initializes the sorted deck
-            for(int j = 0; j < 4; j++){
-                switch (j) {
-                    case 0:
-                        sortedDeck[j*13+i] = (i+1) + " C";
-                        break;
-                    case 1:
-                        sortedDeck[j*13+i] = (i+1) + " D";
-                        break;
-                    case 2:
-                        sortedDeck[j*13+i] = (i+1) + " H";
-                        break;
-                    default:
-                        sortedDeck[j*13+i] = (i+1) + " S";
-                        break;
-                }
-            }
-        }
-        
-        int random;
-        for(int i = 0; i < 52; i++){ // Creates the randomized stack of cards
-            random = (int) (Math.random() * 52);
-            while (sortedDeck[random] == "0"){
-                random++;
-                random = random%52;
-            }
-            
-            deck.push(sortedDeck[random]);
-            sortedDeck[random] = "0";
-        }
-        
-        
+        Stack<String> deck = shuffleDeck();
+        Stack<String> pile = new Stack();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
