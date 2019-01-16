@@ -337,6 +337,10 @@ public class Ztack extends javax.swing.JFrame {
         
         Stack<String> deck = shuffleDeck();
         Stack<String> pile = new Stack();
+        
+        
+        
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
