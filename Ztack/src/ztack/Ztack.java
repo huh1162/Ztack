@@ -36,6 +36,7 @@ public class Ztack extends javax.swing.JFrame {
     public static int O6State = 0;
     public static int PileState = 0;
     public static int DeckState = 0;
+    public static int HandState = 0;
 
     public static Stack shuffleDeck(){
         String[] sortedDeck = new String[52];
@@ -161,6 +162,7 @@ public class Ztack extends javax.swing.JFrame {
         cardOne6.setSelected(false);
         pileButton.setSelected(false);
         deckButton.setSelected(false);
+        viewAIHandButton.setText("View  AI  Hand");
         
     }
     public void resetState(){
@@ -173,6 +175,7 @@ public class Ztack extends javax.swing.JFrame {
         PileState = 0;
         DeckState = 0;
         selected = new Stack();
+        HandState = 0;
     }
     public void enableButtons(){
         cardOne1.setEnabled(true);
@@ -196,6 +199,7 @@ public class Ztack extends javax.swing.JFrame {
         drawButton.setEnabled(true);
         ZTackButton.setEnabled(true);
         
+        viewAIHandButton.setEnabled(false);
         endGame.setEnabled(true);
     }
     public void disableButtons(){
@@ -264,7 +268,130 @@ public class Ztack extends javax.swing.JFrame {
         warningLabel.setText("Draw from the pile or the deck?");
         return true;
     }
+    public void winCheck(){
+        if(playerPoints > 100 || AIPoints > 100){
+            if (AIPoints < playerPoints) {
+                result.setText("You lose...");
+            } else if (AIPoints > playerPoints) {
+                result.setText("You win!");
+            } else {
+                result.setText("You drew.");
+            }
+            startButton.setEnabled(false);
+            endGame.setEnabled(true);
+        }
+    }
+    public void AIZtack(){
+        if (AIHand.points() < playerHand.points()) {
+            result.setText("You got Ztacked...");
+            playerPoints += playerHand.points();
+            AIPoints += AIHand.points();
+        } else if (AIHand.points() >= playerHand.points()) {
+            result.setText("You Ztacked him!");
+            playerPoints += playerHand.points();
+            AIPoints += AIHand.points() + 27;
+        }
+        playerPoint.setText(Integer.toString(playerPoints));
+        AIPoint.setText(Integer.toString(AIPoints));
+        disableButtons();
+        endGame.setEnabled(false);
+        startButton.setEnabled(true);
+        pileButton.setEnabled(false);
+        deckButton.setEnabled(false);
+        newGameButton.setEnabled(false);
+        viewAIHandButton.setEnabled(true);
+        warningLabel.setText("");
+        winCheck();
+    }
     public void AIPlay(){
+        
+        System.out.println(AIHand.points());
+        if(AIHand.points() <= 6 && playerHand.cardsInHand.length > 3){
+            AIZtack();
+        }
+        else if(AIHand.points() <= 4 && playerHand.cardsInHand.length > 2){
+            AIZtack();
+        }
+        else if(AIHand.points() <= 3 && playerHand.cardsInHand.length > 1){
+            AIZtack();
+        }
+        else{
+            int[] cardValues = new int[6], pairs = new int[6], playValue = new int[6];
+            Stack<String> cardsToPlay = new Stack();
+
+            for(int i = 0; i < 6; i++){
+                cardValues[i] = Integer.parseInt(AIHand.cardsInHand[i].split(" ")[0]);
+                if(cardValues[i] == 14){
+                    cardValues[i] = -100;
+                }
+            }
+
+            for(int i = 0; i < 6; i++){
+                pairs[i] = 1;
+                int j = i;
+                while((j <= 4) && cardValues[j] == cardValues[j+1]){
+                    pairs[i]++;
+                    if(j < 4){
+                        j++;
+                    }
+                    else{
+                        break;
+                    }
+                }
+            }
+
+            int maxValue = 0, locationStart = 0;
+
+            for(int i = 0; i < 6; i++){
+                playValue[i] = ((pairs[i]+2)*(cardValues[i]+7));
+                if(maxValue < playValue[i]){
+                    maxValue = playValue[i];
+                    locationStart = i;
+                }
+            }
+
+            for(int i = 0; i < pairs[locationStart]; i++){
+                cardsToPlay.push(AIHand.cardsInHand[i+locationStart]);
+            }
+
+            String pileCard = pile.topCard;
+            int pileCardValue = Integer.parseInt(pileCard.split(" ")[0]);
+
+            System.out.println(cardsToPlay);
+            try{
+                if(Arrays.asList(cardValues).indexOf(pileCardValue) == -1){
+                    throw new Exception();
+                }
+                System.out.print("Duplicate FOUND!");
+                if(Integer.parseInt(AIHand.cardsInHand[locationStart].split(" ")[0]) == pileCardValue){
+                    cardsToPlay = new Stack();
+                    if(locationStart >=1){
+                        cardsToPlay.push(AIHand.cardsInHand[locationStart - 1]);
+                    }
+                    else if (cardValues[pairs[locationStart] + locationStart - 1] != 0){
+                        cardsToPlay.push(AIHand.cardsInHand[pairs[locationStart] + locationStart - 1]);
+                    }
+                    else{
+                        for (int i = 0; i < pairs[locationStart]; i++) {
+                            cardsToPlay.push(AIHand.cardsInHand[i + locationStart]);
+                        }
+                    }
+                }
+                AIHand.play(cardsToPlay, AIHand, pile, true, deck);
+            }
+            catch(Exception e){
+                if(pileCardValue <= Math.round(AIHand.points()/5.0) && pileCardValue < 7){
+                    AIHand.play(cardsToPlay, AIHand, pile, true, deck);
+                }
+                else{
+                    AIHand.play(cardsToPlay, AIHand, pile, false, deck);
+                    AIHand.draw(deck);
+                }
+            }
+
+            displayHand(AIHand, true);
+            System.out.println(Arrays.toString(AIHand.cardsInHand));
+        }
         
     }
     
@@ -306,6 +433,7 @@ public class Ztack extends javax.swing.JFrame {
         result = new javax.swing.JLabel();
         newGameButton = new javax.swing.JButton();
         ZTackButton = new javax.swing.JButton();
+        viewAIHandButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -479,6 +607,14 @@ public class Ztack extends javax.swing.JFrame {
             }
         });
 
+        viewAIHandButton.setText("View  AI  Hand");
+        viewAIHandButton.setEnabled(false);
+        viewAIHandButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewAIHandButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -486,22 +622,24 @@ public class Ztack extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(372, 372, 372)
-                                .addComponent(pileLabel))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
                                 .addComponent(cardOne1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cardOne2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cardOne3, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cardOne3, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(pileLabel)
+                                .addGap(128, 128, 128)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(drawButton)
-                                .addGap(288, 288, 288)
+                                .addGap(171, 171, 171)
+                                .addComponent(viewAIHandButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(ZTackButton))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(cardOne4, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -535,38 +673,35 @@ public class Ztack extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(cardTwo6, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE))
                             .addComponent(warningLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(newGameButton)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(points, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(30, 30, 30))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(playerNameLabel)
-                                            .addComponent(playerPoint, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(51, 51, 51)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(AINameLabel)
-                                            .addComponent(AIPoint, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(totalLabel)
-                                        .addGap(67, 67, 67))))
-                            .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(startButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(endGame)))
-                        .addGap(27, 27, 27))))
+                                .addComponent(endGame))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(playerPoint, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(playerNameLabel)
+                                            .addGap(59, 59, 59))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(totalLabel)
+                                            .addGap(17, 17, 17)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(AINameLabel)
+                                        .addComponent(AIPoint, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(points, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(27, 27, 27))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addComponent(newGameButton)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -596,10 +731,12 @@ public class Ztack extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(warningLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(136, 136, 136)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(pileLabel)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(ZTackButton)
+                                .addComponent(viewAIHandButton))
                             .addComponent(drawButton)
-                            .addComponent(ZTackButton))
+                            .addComponent(pileLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cardOne3, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -610,18 +747,15 @@ public class Ztack extends javax.swing.JFrame {
                             .addComponent(cardOne5, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(445, 445, 445)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(playerNameLabel)
-                                    .addComponent(AINameLabel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(playerPoint, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(AIPoint, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(totalLabel)
-                                .addGap(46, 46, 46)))
+                        .addComponent(totalLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(playerNameLabel)
+                            .addComponent(AINameLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(AIPoint, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(playerPoint, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(57, 57, 57)
                         .addComponent(points)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -629,7 +763,8 @@ public class Ztack extends javax.swing.JFrame {
                             .addComponent(endGame)
                             .addComponent(startButton))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(newGameButton)))
+                        .addComponent(newGameButton)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -799,6 +934,7 @@ public class Ztack extends javax.swing.JFrame {
         playerHand.play(selected, playerHand, pile, true, deck);
         displayHand(playerHand, false);
         enableButtons();
+        AIPlay();
         displayPile(pile);
         points.setText("Hand Points: " + playerHand.points());
     }//GEN-LAST:event_pileButtonActionPerformed
@@ -811,6 +947,8 @@ public class Ztack extends javax.swing.JFrame {
         playerHand.draw(deck);
         displayHand(playerHand, false);
         enableButtons();
+        AIPlay();
+        displayPile(pile);
         points.setText("Hand Points: " + playerHand.points());
     }//GEN-LAST:event_deckButtonActionPerformed
 
@@ -889,18 +1027,23 @@ public class Ztack extends javax.swing.JFrame {
         pileButton.setEnabled(false);
         deckButton.setEnabled(false);
         newGameButton.setEnabled(false);
-        
-        if(playerPoints > 100 || AIPoints > 100){
-            if (AIPoints < playerPoints) {
-                result.setText("You lose...");
-            } else if (AIPoints > playerPoints) {
-                result.setText("You win!");
-            } else {
-                result.setText("You drew.");
-            }
-        }
-        
+        viewAIHandButton.setEnabled(true);
+        warningLabel.setText("");
+
+        winCheck();
     }//GEN-LAST:event_ZTackButtonActionPerformed
+
+    private void viewAIHandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewAIHandButtonActionPerformed
+        HandState++;
+        if(HandState%2 == 1){
+            displayHand(AIHand, false);
+            viewAIHandButton.setText("View Your Hand");
+        }
+        else{
+            displayHand(playerHand, false);
+            viewAIHandButton.setText("View  AI  Hand");
+        }
+    }//GEN-LAST:event_viewAIHandButtonActionPerformed
             
     /**
      * @param args the command line arguments
@@ -968,6 +1111,7 @@ public class Ztack extends javax.swing.JFrame {
     private javax.swing.JLabel result;
     private javax.swing.JButton startButton;
     private javax.swing.JLabel totalLabel;
+    private javax.swing.JButton viewAIHandButton;
     private javax.swing.JLabel warningLabel;
     // End of variables declaration//GEN-END:variables
 }
