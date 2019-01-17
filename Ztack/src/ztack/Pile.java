@@ -15,12 +15,13 @@ public class Pile {
     
     protected String topCard;
     
-    protected Stack<String> pileCards;
+    protected Stack<String> pileCards = new Stack();
     
     protected Stack<String> stackCards = new Stack(); // Cards being played but not on the pile yet
     
-    public Pile(){
-        
+    public Pile(Stack<String> deck){
+        topCard = deck.pop();
+        pileCards.push(topCard);
     }
     
     public void play(String card, Boolean draw){
