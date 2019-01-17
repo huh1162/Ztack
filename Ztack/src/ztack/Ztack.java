@@ -5,12 +5,66 @@
  */
 package ztack;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author henry
  */
 public class Ztack extends javax.swing.JFrame {
-
+    ImageIcon AceOfClubs = new ImageIcon("src/ace_of_clubs.png");
+    ImageIcon TwoOfClubs = new ImageIcon("src/2_of_clubs.png");
+    ImageIcon ThreeOfClubs = new ImageIcon("src/3_of_clubs.png");
+    ImageIcon FourOfClubs = new ImageIcon("src/4_of_clubs.png");
+    ImageIcon FiveOfClubs = new ImageIcon("src/5_of_clubs.png");
+    ImageIcon SixOfClubs = new ImageIcon("src/6_of_clubs.png");
+    ImageIcon SevenOfClubs = new ImageIcon("src/7_of_clubs.png");
+    ImageIcon EightOfClubs = new ImageIcon("src/8_of_clubs.png");
+    ImageIcon NineOfClubs = new ImageIcon("src/9_of_clubs.png");
+    ImageIcon TenOfClubs = new ImageIcon("src/10_of_clubs.png");
+    ImageIcon JackOfClubs = new ImageIcon("src/jack_of_clubs2.png");
+    ImageIcon QueenOfClubs = new ImageIcon("src/queen_of_clubs2.png");
+    ImageIcon KingOfClubs = new ImageIcon("src/king_of_clubs2.png");
+    ImageIcon AceOfHearts = new ImageIcon("src/ace_of_hearts.png");
+    ImageIcon TwoOfHearts = new ImageIcon("src/2_of_hearts.png");
+    ImageIcon ThreeOfHearts = new ImageIcon("src/3_of_hearts.png");
+    ImageIcon FourOfHearts = new ImageIcon("src/4_of_hearts.png");
+    ImageIcon FiveOfHearts = new ImageIcon("src/5_of_hearts.png");
+    ImageIcon SixOfHearts = new ImageIcon("src/6_of_hearts.png");
+    ImageIcon SevenOfHearts = new ImageIcon("src/7_of_hearts.png");
+    ImageIcon EightOfHearts = new ImageIcon("src/8_of_hearts.png");
+    ImageIcon NineOfHearts = new ImageIcon("src/9_of_hearts.png");
+    ImageIcon TenOfHearts = new ImageIcon("src/10_of_hearts.png");
+    ImageIcon JackOfHearts = new ImageIcon("src/jack_of_hearts2.png");
+    ImageIcon QueenOfHearts = new ImageIcon("src/queen_of_hearts2.png");
+    ImageIcon KingOfHearts = new ImageIcon("src/king_of_hearts2.png");
+    ImageIcon AceOfSpades = new ImageIcon("src/ace_of_spades.png");
+    ImageIcon TwoOfSpades = new ImageIcon("src/2_of_spades.png");
+    ImageIcon ThreeOfSpades = new ImageIcon("src/3_of_spades.png");
+    ImageIcon FourOfSpades = new ImageIcon("src/4_of_spades.png");
+    ImageIcon FiveOfSpades = new ImageIcon("src/5_of_spades.png");
+    ImageIcon SixOfSpades = new ImageIcon("src/6_of_spades.png");
+    ImageIcon SevenOfSpades = new ImageIcon("src/7_of_spades.png");
+    ImageIcon EightOfSpades = new ImageIcon("src/8_of_spades.png");
+    ImageIcon NineOfSpades = new ImageIcon("src/9_of_spades.png");
+    ImageIcon TenOfSpades = new ImageIcon("src/10_of_spades.png");
+    ImageIcon JackOfSpades = new ImageIcon("src/jack_of_spades2.png");
+    ImageIcon QueenOfSpades = new ImageIcon("src/queen_of_spades2.png");
+    ImageIcon KingOfSpades = new ImageIcon("src/king_of_spades2.png");
+    ImageIcon AceOfDiamonds = new ImageIcon("src/ace_of_diamonds.png");
+    ImageIcon TwoOfDiamonds = new ImageIcon("src/2_of_diamonds.png");
+    ImageIcon ThreeOfDiamonds = new ImageIcon("src/3_of_diamonds.png");
+    ImageIcon FourOfDiamonds = new ImageIcon("src/4_of_diamonds.png");
+    ImageIcon FiveOfDiamonds = new ImageIcon("src/5_of_diamonds.png");
+    ImageIcon SixOfDiamonds = new ImageIcon("src/6_of_diamonds.png");
+    ImageIcon SevenOfDiamonds = new ImageIcon("src/7_of_diamonds.png");
+    ImageIcon EightOfDiamonds = new ImageIcon("src/8_of_diamonds.png");
+    ImageIcon NineOfDiamonds = new ImageIcon("src/9_of_diamonds.png");
+    ImageIcon TenOfDiamonds = new ImageIcon("src/10_of_diamonds.png");
+    ImageIcon JackOfDiamonds = new ImageIcon("src/jack_of_diamonds2.png");
+    ImageIcon QueenOfDiamonds = new ImageIcon("src/queen_of_diamonds2.png");
+    ImageIcon KingOfDiamonds = new ImageIcon("src/king_of_diamonds2.png");
+    ImageIcon CardBack = new ImageIcon("src/cardBack.png");
     /**
      * Creates new form Ztack
      */
@@ -42,7 +96,8 @@ public class Ztack extends javax.swing.JFrame {
         deck = new javax.swing.JButton();
         pile = new javax.swing.JButton();
         points = new javax.swing.JLabel();
-        endGame = new javax.swing.JButton();
+        endRoundButton = new javax.swing.JButton();
+        NewGameButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,10 +143,17 @@ public class Ztack extends javax.swing.JFrame {
 
         points.setText("Points: 0");
 
-        endGame.setText("End Round");
-        endGame.addActionListener(new java.awt.event.ActionListener() {
+        endRoundButton.setText("End Round");
+        endRoundButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                endGameActionPerformed(evt);
+                endRoundButtonActionPerformed(evt);
+            }
+        });
+
+        NewGameButton.setText("New Game");
+        NewGameButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NewGameButtonActionPerformed(evt);
             }
         });
 
@@ -136,9 +198,10 @@ public class Ztack extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cardOne3, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(endGame)
-                            .addComponent(points, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(endRoundButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(points, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(NewGameButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(27, 27, 27))))
         );
         layout.setVerticalGroup(
@@ -167,7 +230,9 @@ public class Ztack extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(points)
                         .addGap(31, 31, 31)
-                        .addComponent(endGame)))
+                        .addComponent(endRoundButton)
+                        .addGap(76, 76, 76)
+                        .addComponent(NewGameButton)))
                 .addContainerGap())
         );
 
@@ -198,9 +263,13 @@ public class Ztack extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cardTwo6ActionPerformed
 
-    private void endGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endGameActionPerformed
+    private void endRoundButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endRoundButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_endGameActionPerformed
+    }//GEN-LAST:event_endRoundButtonActionPerformed
+
+    private void NewGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewGameButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NewGameButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,6 +307,7 @@ public class Ztack extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton NewGameButton;
     private javax.swing.JToggleButton cardOne1;
     private javax.swing.JToggleButton cardOne2;
     private javax.swing.JToggleButton cardOne3;
@@ -251,7 +321,7 @@ public class Ztack extends javax.swing.JFrame {
     private javax.swing.JButton cardTwo5;
     private javax.swing.JButton cardTwo6;
     private javax.swing.JButton deck;
-    private javax.swing.JButton endGame;
+    private javax.swing.JButton endRoundButton;
     private javax.swing.JButton pile;
     private javax.swing.JLabel points;
     // End of variables declaration//GEN-END:variables

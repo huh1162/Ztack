@@ -64,9 +64,10 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="cardOne3" min="-2" pref="163" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="endGame" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="endRoundButton" max="32767" attributes="0"/>
                           <Component id="points" min="-2" pref="68" max="-2" attributes="0"/>
+                          <Component id="NewGameButton" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   </Group>
@@ -102,7 +103,9 @@
                   <Group type="102" attributes="0">
                       <Component id="points" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                      <Component id="endGame" min="-2" max="-2" attributes="0"/>
+                      <Component id="endRoundButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
+                      <Component id="NewGameButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -168,12 +171,20 @@
         <Property name="text" type="java.lang.String" value="Points: 0"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="endGame">
+    <Component class="javax.swing.JButton" name="endRoundButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="End Round"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="endGameActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="endRoundButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="NewGameButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="New Game"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NewGameButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
