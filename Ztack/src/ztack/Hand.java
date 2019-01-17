@@ -47,29 +47,55 @@ public class Hand {
     }
     
     public void get(String card){
-        this.cardsInHand[Arrays.asList(this.cardsInHand).indexOf("14 X")] = card;
+        cardsInHand[Arrays.asList(cardsInHand).indexOf("14 X")] = card;
         cardsInHand = sort(cardsInHand);
     }
     
+    public int points(){
+        int pointValue = 0;
+        for(int i = 0; i < cardsInHand.length; i++){
+            int cardNumber = Integer.parseInt(cardsInHand[i].split(" ")[0]);
+            switch (cardNumber) {
+                case 11:
+                    pointValue+=10;
+                    break;
+                case 12:
+                    pointValue+=10;
+                    break;
+                case 13:
+                    pointValue+=10;
+                    break;
+                case 14:
+                    break;
+                default:
+                    pointValue+=cardNumber;
+                    break;
+            }
+        }
+        return pointValue;
+    }
     
     /**
      *
      * @param cardsPlay
      * @param player
      * @param pile
+     * @param drawFromPile
+     * @param deck
      */
     public void play(Stack<String> cardsPlay, Hand player, Pile pile, Boolean drawFromPile, Stack<String> deck){
-        for(int i = 0; i < cardsPlay.size();i++){
+        int cardsPlaySize = cardsPlay.size();
+        for(int i = 0; i < cardsPlaySize;i++){
             String card = cardsPlay.pop();
-            this.cardsInHand[Arrays.asList(this.cardsInHand).indexOf(card)] = "14 X";
+            cardsInHand[Arrays.asList(cardsInHand).indexOf(card)] = "14 X";
             pile.play(card, drawFromPile);
         }
         if(drawFromPile == true){
             pile.draw(player);
         }
-        else{
+/*        else{
             player.draw(deck);
-        }
+        }*/
     }
     
     
