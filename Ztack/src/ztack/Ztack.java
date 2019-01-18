@@ -6,6 +6,7 @@
 package ztack;
 import java.util.*;
 import javax.swing.*;
+import java.io.FileReader;
 /**
  *
  * @author henry
@@ -37,6 +38,8 @@ public class Ztack extends javax.swing.JFrame {
     public static int PileState = 0;
     public static int DeckState = 0;
     public static int HandState = 0;
+    public static int InsState = 0;
+    public static int RoundCounter = 0;
 
     /**
      *
@@ -269,6 +272,17 @@ public class Ztack extends javax.swing.JFrame {
         pileButton.setIcon(new ImageIcon("src/" + cardPNG(pile.topCard, false, false)));
         deckButton.setIcon(new ImageIcon("src/cardBack_full.png"));
     } // displays the pile
+    
+    /**
+     * has the AI play if it is its turn to go first
+     */
+    public void goesFirst(){
+        RoundCounter++;
+        if(RoundCounter%2 == 0){
+            AIPlay();
+        }
+        displayPile(pile);
+    }
 
     /**
      *
@@ -489,6 +503,9 @@ public class Ztack extends javax.swing.JFrame {
         newGameButton = new javax.swing.JButton();
         ZTackButton = new javax.swing.JButton();
         viewAIHandButton = new javax.swing.JButton();
+        instructionsButton = new javax.swing.JToggleButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        instructionsLabel = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -670,6 +687,22 @@ public class Ztack extends javax.swing.JFrame {
             }
         });
 
+        instructionsButton.setText("View Instructions");
+        instructionsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                instructionsButtonActionPerformed(evt);
+            }
+        });
+
+        instructionsLabel.setBackground(new java.awt.Color(240, 240, 240));
+        instructionsLabel.setColumns(20);
+        instructionsLabel.setLineWrap(true);
+        instructionsLabel.setRows(5);
+        instructionsLabel.setWrapStyleWord(true);
+        instructionsLabel.setFocusable(false);
+        instructionsLabel.setOpaque(false);
+        jScrollPane1.setViewportView(instructionsLabel);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -732,7 +765,7 @@ public class Ztack extends javax.swing.JFrame {
                             .addComponent(warningLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(startButton)
@@ -756,7 +789,13 @@ public class Ztack extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(59, 59, 59)
                         .addComponent(newGameButton)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(instructionsButton))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -801,7 +840,11 @@ public class Ztack extends javax.swing.JFrame {
                             .addComponent(cardOne6, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cardOne5, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(445, 445, 445)
+                        .addGap(41, 41, 41)
+                        .addComponent(instructionsButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(totalLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -979,6 +1022,8 @@ public class Ztack extends javax.swing.JFrame {
         startButton.setEnabled(false);
         result.setText("");
         warningLabel.setText("");
+        
+        goesFirst();
     }//GEN-LAST:event_startButtonActionPerformed
 
     private void cardOne6StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_cardOne6StateChanged
@@ -1047,6 +1092,7 @@ public class Ztack extends javax.swing.JFrame {
         cardTwo5.setIcon(null);
         cardTwo6.setIcon(null);
         pileButton.setIcon(null);
+        RoundCounter = 0;
         
         startButton.setEnabled(true);
         newGameButton.setEnabled(false);
@@ -1099,6 +1145,23 @@ public class Ztack extends javax.swing.JFrame {
             viewAIHandButton.setText("View  AI  Hand");
         }
     }//GEN-LAST:event_viewAIHandButtonActionPerformed
+
+    private void instructionsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instructionsButtonActionPerformed
+        InsState++; // displays and hides the instructions
+        if(InsState%2 == 1){
+            instructionsButton.setText("Hide Instructions");
+            try (FileReader reader = new FileReader("src/instructions.txt")) {
+                instructionsLabel.read(reader, null);
+            }
+            catch(Exception e){
+            }
+        }
+        else{
+            instructionsButton.setText("View Instructions");
+            instructionsLabel.setText("");
+        }
+        
+    }//GEN-LAST:event_instructionsButtonActionPerformed
             
     /**
      * @param args the command line arguments
@@ -1156,6 +1219,9 @@ public class Ztack extends javax.swing.JFrame {
     private javax.swing.JToggleButton deckButton;
     private javax.swing.JButton drawButton;
     private javax.swing.JButton endGame;
+    private javax.swing.JToggleButton instructionsButton;
+    private javax.swing.JTextArea instructionsLabel;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton newGameButton;
     private javax.swing.JToggleButton pileButton;
     private javax.swing.JLabel pileLabel;

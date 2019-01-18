@@ -1,0 +1,25 @@
+STARTING THE GAME: 
+1. Click New Game.
+2. Click Start Round.
+** You can end the game at any time to start a new one. Each round, however, is counted towards the same game, so you can play several rounds per game.
+
+PLAYING THE GAME:
+1. Each player starts with 6 cards in their hand. The goal is to minimize the point value of your hand. There are a few catches, though.
+2. Each turn, you have three choices. You can draw a card (up to the maximum hand size of 6), play card(s) and draw one from the deck, or play card(s) and pick up the top card on the pile.
+2a. You can play any number of cards with the same number (ie. Ace of Clubs and Ace of Diamonds). To play those cards, you select them, then click the play button. You can then click the pile to draw the card shown or click the deck to draw from the deck.
+2b. You can draw a card by clicking the draw button instead of the play button. You cannot draw to more than 6 cards.
+2c. After your turn, the AI will play.
+3. Once your hand point value is 6 or less, you have the option to ZTack! To do this, you simply press the ZTack button. 
+3a. Ztack is where you end the round and calculate points, and then add it to your overall point total. Each player adds their hand point total (from the round) to their overall total (in the game).
+3b. There is catch, though. If your opponent's hand value is less than yours, you get an extra 27 points, so be careful.
+3c. At the end of each round, you have the option of viewing your opponent's hand.
+4. You keep playing rounds until someone goes to over 100 points overall, at which point, they would lose.
+
+CALCULATING POINTS:
+- Ace is one point.
+- Face cards are each 10 points.
+- All numbered cards are worth the value shown on the front. 
+
+MISCELLANEOUS:
+- The side has a tracker that shows each player's total points in the game thus far.
+- There is a hand points tracker to assist in knowing the value of your hand.
