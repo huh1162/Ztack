@@ -347,6 +347,24 @@ public class Ztack extends javax.swing.JFrame {
     }
 
     /**
+     * ends the game if there are no more cards in the game
+     */
+    public void deckCheck(){
+        if(deck.isEmpty()){
+            playerPoints+=playerHand.points();
+            AIPoints+=AIHand.points();
+            disableButtons();
+            endGame.setEnabled(false);
+            startButton.setEnabled(true);
+            pileButton.setEnabled(false);
+            deckButton.setEnabled(false);
+            newGameButton.setEnabled(false);
+            viewAIHandButton.setEnabled(true);
+            warningLabel.setText("The deck is empty.");
+        }
+    }
+    
+    /**
      * resolves the AI declaring ZTack (win condition)
      */
     public void AIZtack(){
@@ -461,6 +479,8 @@ public class Ztack extends javax.swing.JFrame {
 
             displayHand(AIHand, true); // displays the hand (the number of cards)
         }
+        
+        deckCheck();
         
     }
     
@@ -1037,6 +1057,7 @@ public class Ztack extends javax.swing.JFrame {
         AIPlay();
         displayPile(pile);
         points.setText("Hand Points: " + playerHand.points());
+        deckCheck();
     }//GEN-LAST:event_pileButtonActionPerformed
 
     private void deckButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deckButtonActionPerformed
@@ -1050,6 +1071,7 @@ public class Ztack extends javax.swing.JFrame {
         AIPlay();
         displayPile(pile);
         points.setText("Hand Points: " + playerHand.points());
+        deckCheck();
     }//GEN-LAST:event_deckButtonActionPerformed
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
