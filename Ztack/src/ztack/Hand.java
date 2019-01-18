@@ -13,21 +13,22 @@ import java.util.*;
  */
 public class Hand {
 
-    /**
-     *
-     */
-    protected String[] cardsInHand = new String[6];
+    protected String[] cardsInHand = new String[6]; // an array of the cards in a hand
     
+    /**
+     * initializes a hand
+     */
     public Hand(){
         for(int i = 0; i < 6; i++){
             cardsInHand[i] = "14 X";
         }
     }
-    
-    public Hand(String[] cardsList){
-        System.arraycopy(cardsList, 0, cardsInHand, 0, cardsList.length);
-    }
-    
+        
+    /**
+     *
+     * @param cardsInHand the cards in the hand
+     * @return a sorted array
+     */
     public String[] sort(String[] cardsInHand){
         int[][] sortingArray = new int[6][2];
         for(int i = 0; i < 6; i++){
@@ -41,16 +42,28 @@ public class Hand {
         return cardsInHand;
     }    
     
+    /**
+     *
+     * @param deck is the deck from which a card is drawn
+     */
     public void draw(Stack<String> deck){ // Drawing from the deck
         this.cardsInHand[Arrays.asList(this.cardsInHand).indexOf("14 X")] = deck.pop();
         cardsInHand = sort(cardsInHand);
     }
     
+    /**
+     *
+     * @param card puts a specific card into the hand
+     */
     public void get(String card){
         cardsInHand[Arrays.asList(cardsInHand).indexOf("14 X")] = card;
         cardsInHand = sort(cardsInHand);
     }
     
+    /**
+     *
+     * @return the total point value of a hand
+     */
     public int points(){
         int pointValue = 0;
         for(int i = 0; i < cardsInHand.length; i++){
@@ -77,11 +90,11 @@ public class Hand {
     
     /**
      *
-     * @param cardsPlay
-     * @param player
-     * @param pile
-     * @param drawFromPile
-     * @param deck
+     * @param cardsPlay the cards to play
+     * @param player the hand that is being played from
+     * @param pile the pile the cards going on
+     * @param drawFromPile whether to draw a card from the pile
+     * @param deck the deck from which can be drawn
      */
     public void play(Stack<String> cardsPlay, Hand player, Pile pile, Boolean drawFromPile, Stack<String> deck){
         int cardsPlaySize = cardsPlay.size();
@@ -93,9 +106,6 @@ public class Hand {
         if(drawFromPile == true){
             pile.draw(player);
         }
-/*        else{
-            player.draw(deck);
-        }*/
     }
     
     

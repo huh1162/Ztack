@@ -19,17 +19,17 @@ public class Ztack extends javax.swing.JFrame {
         initComponents();
     }
     
-    public static Stack<String> deck;
-    public static Pile pile;
-    public static Hand AIHand;
-    public static Hand playerHand;
-    public static Stack<String> selected = new Stack();
-    public static Boolean playState = false;
-    public static int playerPoints = 0;
-    public static int AIPoints = 0;
+    public static Stack<String> deck; // creates the deck
+    public static Pile pile; // creates the pile
+    public static Hand AIHand; // creates the hand for the AI
+    public static Hand playerHand; // creates the hand for the player
+    public static Stack<String> selected = new Stack(); // creates the stack of cards that are selected on the GUI
+    public static Boolean playState = false; // indicates that the play is valid
+    public static int playerPoints = 0; // the total number of points of the player across rounds
+    public static int AIPoints = 0; // the total number of points of the AI across rounds
     
-    public static int O1State = 0;
-    public static int O2State = 0;
+    public static int O1State = 0; // keeps track of the state to help switch between grey and white version of icons
+    public static int O2State = 0; // to help show which cards or states are clicked/on
     public static int O3State = 0;
     public static int O4State = 0;
     public static int O5State = 0;
@@ -38,11 +38,15 @@ public class Ztack extends javax.swing.JFrame {
     public static int DeckState = 0;
     public static int HandState = 0;
 
+    /**
+     *
+     * @return a shuffled deck of standard cards
+     */
     public static Stack shuffleDeck(){
         String[] sortedDeck = new String[52];
         Stack<String> deck = new Stack();
         
-        for(int i = 0; i < 13; i++){ // Initializes the sorted deck
+        for(int i = 0; i < 13; i++){ // initializes the sorted deck
             for(int j = 0; j < 4; j++){
                 switch (j) {
                     case 0:
@@ -62,7 +66,7 @@ public class Ztack extends javax.swing.JFrame {
         }
         
         int random;
-        for(int i = 0; i < 52; i++){ // Creates the randomized stack of cards
+        for(int i = 0; i < 52; i++){ // creates the randomized stack of cards
             random = (int) (Math.random() * 52);
             while (sortedDeck[random] == "0"){
                 random++;
@@ -74,19 +78,27 @@ public class Ztack extends javax.swing.JFrame {
         }
         
         return deck;
-    }
+    } // shuffles and returns the deck
+
+    /**
+     *
+     * @param card the card needing a png
+     * @param AI whether the player or AI owns the card
+     * @param grey whether the card is greyed (clicked)
+     * @return
+     */
     public static String cardPNG(String card, Boolean AI, Boolean grey){
         
-        if("14 X".equals(card)){
+        if("14 X".equals(card)){ // "14 X" is the symbol for blank space
             return "blank.png";
         }
         
         String output = "";
         
-        if(AI == true){
+        if(AI == true){ // the AI's cards should not be seen by the player
             output = "cardBack";
         }
-        else{
+        else{ // if it is the player's cards
             String[] temp = card.split(" ");
             int number = Integer.parseInt(temp[0]);
             char suit = temp[1].charAt(0);
@@ -128,13 +140,19 @@ public class Ztack extends javax.swing.JFrame {
                     break;
             }
         }
-        if(grey == true){
+        if(grey == true){ // checks if it is a greyed card
             output += "_grey";
         }
         output+=".png";
         
         return output;
     }
+
+    /**
+     *
+     * @param hand the hand being displayed
+     * @param AI whether it is an AI hand
+     */
     public void displayHand(Hand hand, Boolean AI){
         if(AI == false){
             cardOne1.setIcon(new ImageIcon("src/"+cardPNG(hand.cardsInHand[0], AI, false)));
@@ -153,6 +171,10 @@ public class Ztack extends javax.swing.JFrame {
             cardTwo6.setIcon(new ImageIcon("src/"+cardPNG(hand.cardsInHand[5], AI, false)));
         }
     }
+
+    /**
+     * resets most buttons to the original state
+     */
     public void resetButtons(){
         cardOne1.setSelected(false);
         cardOne2.setSelected(false);
@@ -165,6 +187,10 @@ public class Ztack extends javax.swing.JFrame {
         viewAIHandButton.setText("View  AI  Hand");
         
     }
+
+    /**
+     * resets the states that keep track of variables
+     */
     public void resetState(){
         O1State = 0;
         O2State = 0;
@@ -177,6 +203,10 @@ public class Ztack extends javax.swing.JFrame {
         selected = new Stack();
         HandState = 0;
     }
+
+    /**
+     * enables the buttons that are used when selecting cards, etc.
+     */
     public void enableButtons(){
         cardOne1.setEnabled(true);
         cardOne2.setEnabled(true);
@@ -202,6 +232,10 @@ public class Ztack extends javax.swing.JFrame {
         viewAIHandButton.setEnabled(false);
         endGame.setEnabled(true);
     }
+
+    /**
+     * disables the buttons and enables those that are needed when drawing cards
+     */
     public void disableButtons(){
         cardOne1.setEnabled(false);
         cardOne2.setEnabled(false);
@@ -226,30 +260,42 @@ public class Ztack extends javax.swing.JFrame {
         
         endGame.setEnabled(true);
     }
+
+    /**
+     *
+     * @param pile the pile being displayed
+     */
     public void displayPile(Pile pile){
         pileButton.setIcon(new ImageIcon("src/" + cardPNG(pile.topCard, false, false)));
         deckButton.setIcon(new ImageIcon("src/cardBack_full.png"));
-    }
+    } // displays the pile
+
+    /**
+     *
+     * @return whether the play is a valid one or not
+     */
     public Boolean checkPlay(){
         Stack<String> temporary = new Stack();
         int number = 14;
-        String middleMan;
+        String middleMan; // a middle storage to help make sure the stack stayed intact
         int selectedSize = selected.size();
-        if(selectedSize == 0){
+        
+        if(selectedSize == 0){ // makes sure a card is played
             warningLabel.setText("You have to play a card or draw a card.");
             return false;
         }
+        
         for(int i = 0; i < selectedSize; i++){
             middleMan = selected.pop();
             temporary.push(middleMan);
             if(i == 0){
-                number = Integer.parseInt(middleMan.split(" ")[0]);
+                number = Integer.parseInt(middleMan.split(" ")[0]); // checks for blanks
                 if(number == 14){
                     warningLabel.setText("You cannot play non-cards.");
                     return false;
                 }
             }
-            else{
+            else{ // makes sure the cards played are the same value
                 if(number != Integer.parseInt(middleMan.split(" ")[0])){
                     resetButtons();
                     resetState();
@@ -268,6 +314,10 @@ public class Ztack extends javax.swing.JFrame {
         warningLabel.setText("Draw from the pile or the deck?");
         return true;
     }
+
+    /**
+     * checks if one side or the other won the game
+     */
     public void winCheck(){
         if(playerPoints > 100 || AIPoints > 100){
             if (AIPoints < playerPoints) {
@@ -281,6 +331,10 @@ public class Ztack extends javax.swing.JFrame {
             endGame.setEnabled(true);
         }
     }
+
+    /**
+     * resolves the AI declaring ZTack (win condition)
+     */
     public void AIZtack(){
         if (AIHand.points() < playerHand.points()) {
             result.setText("You got Ztacked...");
@@ -293,7 +347,7 @@ public class Ztack extends javax.swing.JFrame {
         }
         playerPoint.setText(Integer.toString(playerPoints));
         AIPoint.setText(Integer.toString(AIPoints));
-        disableButtons();
+        disableButtons(); // resets for the next round
         endGame.setEnabled(false);
         startButton.setEnabled(true);
         pileButton.setEnabled(false);
@@ -303,10 +357,13 @@ public class Ztack extends javax.swing.JFrame {
         warningLabel.setText("");
         winCheck();
     }
+
+    /**
+     * the code that runs the AI
+     */
     public void AIPlay(){
         
-        System.out.println(AIHand.points());
-        if(AIHand.points() <= 6 && playerHand.cardsInHand.length > 3){
+        if(AIHand.points() <= 6 && playerHand.cardsInHand.length > 3){ // checks if the AI should declare ZTack
             AIZtack();
         }
         else if(AIHand.points() <= 4 && playerHand.cardsInHand.length > 2){
@@ -315,18 +372,18 @@ public class Ztack extends javax.swing.JFrame {
         else if(AIHand.points() <= 3 && playerHand.cardsInHand.length > 1){
             AIZtack();
         }
-        else{
+        else{ // if it does not declare ZTack
             int[] cardValues = new int[6], pairs = new int[6], playValue = new int[6];
             Stack<String> cardsToPlay = new Stack();
 
-            for(int i = 0; i < 6; i++){
+            for(int i = 0; i < 6; i++){ // makes a list of the values of the cards
                 cardValues[i] = Integer.parseInt(AIHand.cardsInHand[i].split(" ")[0]);
                 if(cardValues[i] == 14){
                     cardValues[i] = -100;
                 }
-            }
+            }   
 
-            for(int i = 0; i < 6; i++){
+            for(int i = 0; i < 6; i++){ // finds all the pairs and triples etc.
                 pairs[i] = 1;
                 int j = i;
                 while((j <= 4) && cardValues[j] == cardValues[j+1]){
@@ -342,7 +399,7 @@ public class Ztack extends javax.swing.JFrame {
 
             int maxValue = 0, locationStart = 0;
 
-            for(int i = 0; i < 6; i++){
+            for(int i = 0; i < 6; i++){ // finds the ideal play through a vlue calculation
                 playValue[i] = ((pairs[i]+2)*(cardValues[i]+7));
                 if(maxValue < playValue[i]){
                     maxValue = playValue[i];
@@ -350,20 +407,19 @@ public class Ztack extends javax.swing.JFrame {
                 }
             }
 
-            for(int i = 0; i < pairs[locationStart]; i++){
+            for(int i = 0; i < pairs[locationStart]; i++){ // creates the cards to play
                 cardsToPlay.push(AIHand.cardsInHand[i+locationStart]);
             }
 
             String pileCard = pile.topCard;
-            int pileCardValue = Integer.parseInt(pileCard.split(" ")[0]);
+            int pileCardValue = Integer.parseInt(pileCard.split(" ")[0]); // the value of the top card on the pile
 
-            System.out.println(cardsToPlay);
-            try{
+            try{ // checks if the card on the pile makes a pair with a card in the hand
                 if(Arrays.asList(cardValues).indexOf(pileCardValue) == -1){
                     throw new Exception();
                 }
                 System.out.print("Duplicate FOUND!");
-                if(Integer.parseInt(AIHand.cardsInHand[locationStart].split(" ")[0]) == pileCardValue){
+                if(Integer.parseInt(AIHand.cardsInHand[locationStart].split(" ")[0]) == pileCardValue){ // makes sure the duplicate isn't played
                     cardsToPlay = new Stack();
                     if(locationStart >=1){
                         cardsToPlay.push(AIHand.cardsInHand[locationStart - 1]);
@@ -379,7 +435,7 @@ public class Ztack extends javax.swing.JFrame {
                 }
                 AIHand.play(cardsToPlay, AIHand, pile, true, deck);
             }
-            catch(Exception e){
+            catch(Exception e){ // if there is not duplicate, consider whether to draw a random card or draw from the pile 
                 if(pileCardValue <= Math.round(AIHand.points()/5.0) && pileCardValue < 7){
                     AIHand.play(cardsToPlay, AIHand, pile, true, deck);
                 }
@@ -389,8 +445,7 @@ public class Ztack extends javax.swing.JFrame {
                 }
             }
 
-            displayHand(AIHand, true);
-            System.out.println(Arrays.toString(AIHand.cardsInHand));
+            displayHand(AIHand, true); // displays the hand (the number of cards)
         }
         
     }
@@ -818,7 +873,7 @@ public class Ztack extends javax.swing.JFrame {
     }//GEN-LAST:event_endGameActionPerformed
 
     private void cardOne1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cardOne1ActionPerformed
-        O1State++;
+        O1State++; // makes the icon change depending on which state the button is in
         if(O1State%2 == 1){
             cardOne1.setIcon(new ImageIcon("src/"+cardPNG(playerHand.cardsInHand[0], false, true)));
             selected.push(playerHand.cardsInHand[0]);
@@ -902,7 +957,7 @@ public class Ztack extends javax.swing.JFrame {
     }//GEN-LAST:event_cardOne3ActionPerformed
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
-        deck = shuffleDeck();
+        deck = shuffleDeck(); // starts a round
         pile = new Pile(deck);
         AIHand = new Hand();
         playerHand = new Hand();
@@ -931,7 +986,7 @@ public class Ztack extends javax.swing.JFrame {
     }//GEN-LAST:event_cardOne6StateChanged
 
     private void pileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pileButtonActionPerformed
-        playerHand.play(selected, playerHand, pile, true, deck);
+        playerHand.play(selected, playerHand, pile, true, deck); // plays cards to the pile and draw a card
         displayHand(playerHand, false);
         enableButtons();
         AIPlay();
@@ -940,11 +995,11 @@ public class Ztack extends javax.swing.JFrame {
     }//GEN-LAST:event_pileButtonActionPerformed
 
     private void deckButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deckButtonActionPerformed
-        if(playState = true){
+        if(playState = true){ // play a card...
             playerHand.play(selected, playerHand, pile, false, deck);
             displayPile(pile);
         }
-        playerHand.draw(deck);
+        playerHand.draw(deck); //... and draw a card
         displayHand(playerHand, false);
         enableButtons();
         AIPlay();
@@ -953,7 +1008,7 @@ public class Ztack extends javax.swing.JFrame {
     }//GEN-LAST:event_deckButtonActionPerformed
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
-        Boolean validPlay = checkPlay();
+        Boolean validPlay = checkPlay(); // checks if the play is valid
         if(validPlay == true){
             disableButtons();
             playState = true;
@@ -962,7 +1017,7 @@ public class Ztack extends javax.swing.JFrame {
     }//GEN-LAST:event_playButtonActionPerformed
 
     private void drawButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_drawButtonActionPerformed
-        if("14".equals(playerHand.cardsInHand[5].split(" ")[0])){
+        if("14".equals(playerHand.cardsInHand[5].split(" ")[0])){ // draw a card
             deckButton.setEnabled(true);
             disableButtons();
             pileButton.setEnabled(false);
@@ -974,7 +1029,7 @@ public class Ztack extends javax.swing.JFrame {
     }//GEN-LAST:event_drawButtonActionPerformed
 
     private void newGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameButtonActionPerformed
-        playerPoints = 0;
+        playerPoints = 0; //resets everything and makes a new game
         AIPoints = 0;
         selected = new Stack();
         playState = false;
@@ -1004,7 +1059,7 @@ public class Ztack extends javax.swing.JFrame {
     }//GEN-LAST:event_newGameButtonActionPerformed
 
     private void ZTackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ZTackButtonActionPerformed
-        if(playerHand.points() <=6 ){
+        if(playerHand.points() <=6 ){ // checks how the ZTack ends up
             if (AIHand.points() <= playerHand.points()) {
                 result.setText("You got Ztacked...");
                 playerPoints += playerHand.points() + 27;
@@ -1034,7 +1089,7 @@ public class Ztack extends javax.swing.JFrame {
     }//GEN-LAST:event_ZTackButtonActionPerformed
 
     private void viewAIHandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewAIHandButtonActionPerformed
-        HandState++;
+        HandState++; // when the round is over, you can see the hands
         if(HandState%2 == 1){
             displayHand(AIHand, false);
             viewAIHandButton.setText("View Your Hand");
