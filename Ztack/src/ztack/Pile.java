@@ -13,26 +13,17 @@ import java.util.Stack;
  */
 public class Pile {
     
-    protected String topCard; // the top card of the pile (which is the one that can be drawn)
+    protected String topCard;
     
-    protected Stack<String> pileCards = new Stack(); // the pile of cards
+    protected Stack<String> pileCards = new Stack();
     
-    protected Stack<String> stackCards = new Stack(); // cards being played but not on the pile yet (to allow for drawing cards)
+    protected Stack<String> stackCards = new Stack(); // Cards being played but not on the pile yet
     
-    /**
-     * initializes the pile at the beginning of the game
-     * @param deck the deck to draw cards from
-     */
     public Pile(Stack<String> deck){
         topCard = deck.pop();
         pileCards.push(topCard);
     }
     
-    /**
-     *
-     * @param card the card being played onto the pile
-     * @param draw whether to draw a card or not
-     */
     public void play(String card, Boolean draw){
         topCard = card;
         if(draw == true){
@@ -43,10 +34,11 @@ public class Pile {
         }
     }
     
-    /**
-     *
-     * @param player the hand that is drawing a card from the pile
-     */
+    public void get(String card) {
+        topCard = card;
+        pileCards.push(card);
+    }
+    
     public void draw(Hand player){
         player.get(pileCards.pop());
         stackCards.pop();
