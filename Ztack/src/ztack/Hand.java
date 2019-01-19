@@ -1,14 +1,13 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Handles the activities involved in both the player and the AIs hand
  */
 package ztack;
 import java.util.*;
 
 
 /**
- *
+ * @author Sangar
+ * @author Margaret
  * @author henry
  */
 public class Hand {
@@ -25,7 +24,7 @@ public class Hand {
     }
         
     /**
-     *
+     * Sorts the cards in the hand in order from lowest to highest
      * @param cardsInHand the cards in the hand
      * @return a sorted array
      */
@@ -43,16 +42,16 @@ public class Hand {
     }    
     
     /**
-     *
+     * Drawing from the deck
      * @param deck is the deck from which a card is drawn
      */
-    public void draw(Stack<String> deck){ // Drawing from the deck
+    public void draw(Stack<String> deck){ 
         this.cardsInHand[Arrays.asList(this.cardsInHand).indexOf("14 X")] = deck.pop();
         cardsInHand = sort(cardsInHand);
     }
     
     /**
-     *
+     * When you draw a card is added to the the hand
      * @param card puts a specific card into the hand
      */
     public void get(String card){
@@ -61,7 +60,7 @@ public class Hand {
     }
     
     /**
-     *
+     * Calculates the amount of points in a hand
      * @return the total point value of a hand
      */
     public int points(){
@@ -89,7 +88,7 @@ public class Hand {
     }
     
     /**
-     *
+     * handles playing a card
      * @param cardsPlay the cards to play
      * @param player the hand that is being played from
      * @param pile the pile the cards going on

@@ -1,14 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Class that controls functions of the pile such as setting the cards, resetting the cards
+ * and paying the players or AI's card(s)
  */
 package ztack;
 import java.util.Arrays;
 import java.util.Stack;
 
 /**
- *
+ * @author Sangar
+ * @author Margaret
  * @author henry
  */
 public class Pile {
@@ -29,7 +29,7 @@ public class Pile {
     }
     
     /**
-     *
+     * handles the pile while the card is being played and after
      * @param card the card being played onto the pile
      * @param draw whether to draw a card or not
      */
@@ -44,7 +44,7 @@ public class Pile {
     }
     
     /**
-     *
+     * Drawing a card from the pile
      * @param player the hand that is drawing a card from the pile
      */
     public void draw(Hand player){
