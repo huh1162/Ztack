@@ -10,8 +10,8 @@ PLAYING THE GAME:
 2b. You can draw a card by clicking the draw button instead of the play button. You cannot draw to more than 6 cards.
 2c. After your turn, the AI will play.
 3. Once your hand point value is 6 or less, you have the option to ZTack! To do this, you simply press the ZTack button. 
-3a. Ztack is where you end the round and calculate points, and then add it to your overall point total. Each player adds their hand point total (from the round) to their overall total (in the game).
-3b. There is catch, though. If your opponent's hand value is less than yours, you get an extra 27 points, so be careful.
+3a. ZTack is where you end the round and calculate points, and then add it to your overall point total. Each player adds their hand point total (from the round) to their overall total (in the game).
+3b. There is catch, though. If your opponent's hand value is less than or equal to yours, you get an extra 27 points, so be careful.
 3c. At the end of each round, you have the option of viewing your opponent's hand.
 4. You keep playing rounds until someone goes to over 100 points overall, at which point, they would lose.
 

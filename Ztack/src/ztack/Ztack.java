@@ -1171,21 +1171,22 @@ public class Ztack extends javax.swing.JFrame {
             }
             playerPoint.setText(Integer.toString(playerPoints));
             AIPoint.setText(Integer.toString(AIPoints));
+            
+            disableButtons();
+            endGame.setEnabled(false);
+            startButton.setEnabled(true);
+            pileButton.setEnabled(false);
+            deckButton.setEnabled(false);
+            newGameButton.setEnabled(false);
+            viewAIHandButton.setEnabled(true);
+            warningLabel.setText("");
+
+            winCheck();
         }
         else{
             warningLabel.setText("You can only ZTack when your hand point is below 6.");
         }
         
-        disableButtons();
-        endGame.setEnabled(false);
-        startButton.setEnabled(true);
-        pileButton.setEnabled(false);
-        deckButton.setEnabled(false);
-        newGameButton.setEnabled(false);
-        viewAIHandButton.setEnabled(true);
-        warningLabel.setText("");
-
-        winCheck();
     }//GEN-LAST:event_ZTackButtonActionPerformed
 
     // when the round is over, you can see the hands
