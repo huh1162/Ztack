@@ -9,7 +9,7 @@ import java.util.Stack;
 /**
  * @author Sangar
  * @author Margaret
- * @author henry
+ * @author Henry
  */
 public class Pile {
     
