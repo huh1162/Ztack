@@ -255,7 +255,7 @@
     <Component class="javax.swing.JToggleButton" name="cardOne1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Backofcardnew.png"/>
+          <Image iconType="3" name="/cardBack_full.png"/>
         </Property>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
@@ -266,7 +266,7 @@
     <Component class="javax.swing.JToggleButton" name="cardOne2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Backofcardnew.png"/>
+          <Image iconType="3" name="/cardBack_full.png"/>
         </Property>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
@@ -277,7 +277,7 @@
     <Component class="javax.swing.JToggleButton" name="cardOne3">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Backofcardnew.png"/>
+          <Image iconType="3" name="/cardBack_full.png"/>
         </Property>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
@@ -288,7 +288,7 @@
     <Component class="javax.swing.JToggleButton" name="cardOne4">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Backofcardnew.png"/>
+          <Image iconType="3" name="/cardBack_full.png"/>
         </Property>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
@@ -299,7 +299,7 @@
     <Component class="javax.swing.JToggleButton" name="cardOne5">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Backofcardnew.png"/>
+          <Image iconType="3" name="/cardBack_full.png"/>
         </Property>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
@@ -310,7 +310,7 @@
     <Component class="javax.swing.JToggleButton" name="cardOne6">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Backofcardnew.png"/>
+          <Image iconType="3" name="/cardBack_full.png"/>
         </Property>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
@@ -322,7 +322,7 @@
     <Component class="javax.swing.JButton" name="cardTwo1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Backofcardnew2.png"/>
+          <Image iconType="3" name="/cardBack.png"/>
         </Property>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
@@ -333,7 +333,7 @@
     <Component class="javax.swing.JButton" name="cardTwo2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Backofcardnew2.png"/>
+          <Image iconType="3" name="/cardBack.png"/>
         </Property>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
@@ -344,7 +344,7 @@
     <Component class="javax.swing.JButton" name="cardTwo3">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Backofcardnew2.png"/>
+          <Image iconType="3" name="/cardBack.png"/>
         </Property>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
@@ -355,7 +355,7 @@
     <Component class="javax.swing.JButton" name="cardTwo4">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Backofcardnew2.png"/>
+          <Image iconType="3" name="/cardBack.png"/>
         </Property>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
@@ -366,7 +366,7 @@
     <Component class="javax.swing.JButton" name="cardTwo5">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Backofcardnew2.png"/>
+          <Image iconType="3" name="/cardBack.png"/>
         </Property>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
@@ -377,7 +377,7 @@
     <Component class="javax.swing.JButton" name="cardTwo6">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Backofcardnew2.png"/>
+          <Image iconType="3" name="/cardBack.png"/>
         </Property>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>

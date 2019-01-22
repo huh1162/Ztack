@@ -551,7 +551,7 @@ public class Ztack extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        cardOne1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Backofcardnew.png"))); // NOI18N
+        cardOne1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cardBack_full.png"))); // NOI18N
         cardOne1.setEnabled(false);
         cardOne1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -559,7 +559,7 @@ public class Ztack extends javax.swing.JFrame {
             }
         });
 
-        cardOne2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Backofcardnew.png"))); // NOI18N
+        cardOne2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cardBack_full.png"))); // NOI18N
         cardOne2.setEnabled(false);
         cardOne2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -567,7 +567,7 @@ public class Ztack extends javax.swing.JFrame {
             }
         });
 
-        cardOne3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Backofcardnew.png"))); // NOI18N
+        cardOne3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cardBack_full.png"))); // NOI18N
         cardOne3.setEnabled(false);
         cardOne3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -575,7 +575,7 @@ public class Ztack extends javax.swing.JFrame {
             }
         });
 
-        cardOne4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Backofcardnew.png"))); // NOI18N
+        cardOne4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cardBack_full.png"))); // NOI18N
         cardOne4.setEnabled(false);
         cardOne4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -583,7 +583,7 @@ public class Ztack extends javax.swing.JFrame {
             }
         });
 
-        cardOne5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Backofcardnew.png"))); // NOI18N
+        cardOne5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cardBack_full.png"))); // NOI18N
         cardOne5.setEnabled(false);
         cardOne5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -591,7 +591,7 @@ public class Ztack extends javax.swing.JFrame {
             }
         });
 
-        cardOne6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Backofcardnew.png"))); // NOI18N
+        cardOne6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cardBack_full.png"))); // NOI18N
         cardOne6.setEnabled(false);
         cardOne6.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -604,7 +604,7 @@ public class Ztack extends javax.swing.JFrame {
             }
         });
 
-        cardTwo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Backofcardnew2.png"))); // NOI18N
+        cardTwo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cardBack.png"))); // NOI18N
         cardTwo1.setEnabled(false);
         cardTwo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -612,7 +612,7 @@ public class Ztack extends javax.swing.JFrame {
             }
         });
 
-        cardTwo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Backofcardnew2.png"))); // NOI18N
+        cardTwo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cardBack.png"))); // NOI18N
         cardTwo2.setEnabled(false);
         cardTwo2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -620,7 +620,7 @@ public class Ztack extends javax.swing.JFrame {
             }
         });
 
-        cardTwo3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Backofcardnew2.png"))); // NOI18N
+        cardTwo3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cardBack.png"))); // NOI18N
         cardTwo3.setEnabled(false);
         cardTwo3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -628,7 +628,7 @@ public class Ztack extends javax.swing.JFrame {
             }
         });
 
-        cardTwo4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Backofcardnew2.png"))); // NOI18N
+        cardTwo4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cardBack.png"))); // NOI18N
         cardTwo4.setEnabled(false);
         cardTwo4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -636,7 +636,7 @@ public class Ztack extends javax.swing.JFrame {
             }
         });
 
-        cardTwo5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Backofcardnew2.png"))); // NOI18N
+        cardTwo5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cardBack.png"))); // NOI18N
         cardTwo5.setEnabled(false);
         cardTwo5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -644,7 +644,7 @@ public class Ztack extends javax.swing.JFrame {
             }
         });
 
-        cardTwo6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Backofcardnew2.png"))); // NOI18N
+        cardTwo6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cardBack.png"))); // NOI18N
         cardTwo6.setEnabled(false);
         cardTwo6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
