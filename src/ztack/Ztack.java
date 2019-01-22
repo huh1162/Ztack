@@ -7,6 +7,7 @@ package ztack;
 import java.util.*;
 import javax.swing.*;
 import java.io.FileReader;
+import java.awt.Color;
 /**
  * @author Sangar
  * @author Margaret
@@ -19,6 +20,7 @@ public class Ztack extends javax.swing.JFrame {
      */
     public Ztack() {
         initComponents();
+        getContentPane().setBackground(new Color(0,153,0));
     }
     
     public static Stack<String> deck; // creates the deck
@@ -41,7 +43,7 @@ public class Ztack extends javax.swing.JFrame {
     public static int HandState = 0;
     public static int InsState = 0;
     public static int RoundCounter = 0;
-
+    
     /**
      * A method that shuffles all the cards
      * @return a shuffled deck of standard cards
@@ -245,6 +247,7 @@ public class Ztack extends javax.swing.JFrame {
         playButton.setEnabled(true);
         drawButton.setEnabled(true);
         ZTackButton.setEnabled(true);
+
         
         viewAIHandButton.setEnabled(false);
         endGame.setEnabled(true);
@@ -340,7 +343,7 @@ public class Ztack extends javax.swing.JFrame {
         displayHand(playerHand, false);
         displayPile(pile);
         selected = temporary;
-        warningLabel.setText("Draw from the pile or the deck?");
+        warningLabel.setText("Draw from the pile or the deck.");
         return true;
     }
 
@@ -378,7 +381,7 @@ public class Ztack extends javax.swing.JFrame {
             warningLabel.setText("The deck is empty.");
         }
     }
-    
+       
     /**
      * resolves the AI declaring ZTack (win condition) & keeps track of the score
      */
@@ -400,7 +403,7 @@ public class Ztack extends javax.swing.JFrame {
         pileButton.setEnabled(false);
         deckButton.setEnabled(false);
         newGameButton.setEnabled(false);
-        viewAIHandButton.setEnabled(true);
+        viewAIHandButton.setEnabled(true);   
         warningLabel.setText("");
         winCheck();
     }
@@ -503,7 +506,7 @@ public class Ztack extends javax.swing.JFrame {
         deckCheck();
         
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -550,6 +553,7 @@ public class Ztack extends javax.swing.JFrame {
         Title = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 0));
 
         cardOne1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cardBack_full.png"))); // NOI18N
         cardOne1.setEnabled(false);
@@ -1213,7 +1217,7 @@ public class Ztack extends javax.swing.JFrame {
             } else if (AIHand.points() > playerHand.points()) {
                 result.setText("You Ztacked him!");
                 playerPoints += playerHand.points();
-                AIPoints += AIHand.points();
+                AIPoints += AIHand.points();   
             }
             playerPoint.setText(Integer.toString(playerPoints));
             AIPoint.setText(Integer.toString(AIPoints));
@@ -1226,7 +1230,7 @@ public class Ztack extends javax.swing.JFrame {
             newGameButton.setEnabled(false);
             viewAIHandButton.setEnabled(true);
             warningLabel.setText("");
-
+            
             winCheck();
         }
         else{
