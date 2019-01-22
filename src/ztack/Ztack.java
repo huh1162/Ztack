@@ -62,8 +62,6 @@ public class Ztack extends javax.swing.JFrame {
                     case 2:
                         sortedDeck[j*13+i] = (i+1) + " H";
                         break;
-                    case 3:
-                        sortedDeck[j*2+i] = (i+1) + "Joker";
                     default:
                         sortedDeck[j*13+i] = (i+1) + " S";
                         break;
@@ -71,10 +69,13 @@ public class Ztack extends javax.swing.JFrame {
             }
         }
         
+        sortedDeck[52] = "0 B";
+        sortedDeck[53] = "0 R";
+        
         int random;
-        for(int i = 0; i < 52; i++){ // creates the randomized stack of cards
+        for(int i = 0; i < 54; i++){ // creates the randomized stack of cards
             random = (int) (Math.random() * 54);
-            while (sortedDeck[random] == "0"){
+            while ("0".equals(sortedDeck[random])){
                 random++;
                 random = random%54;
             }
@@ -111,6 +112,9 @@ public class Ztack extends javax.swing.JFrame {
             char suit = temp[1].charAt(0);
         
             switch (number) {
+                case 0:
+                    output+="joker";
+                    break;
                 case 1:
                     output+="ace";
                     break;
@@ -142,6 +146,12 @@ public class Ztack extends javax.swing.JFrame {
                     break;
                 case 'D':
                     output+="diamonds";
+                    break;
+                case 'R':
+                    output+="red";
+                    break;
+                case 'B':
+                    output+="black";
                     break;
                 default:
                     break;
@@ -439,7 +449,7 @@ public class Ztack extends javax.swing.JFrame {
 
             // finds the ideal play through a value calculation
             for(int i = 0; i < 6; i++){ 
-                playValue[i] = ((pairs[i]+2)*(cardValues[i]+7));
+                playValue[i] = ((int) Math.pow((pairs[i]),3)*(cardValues[i]));
                 if(maxValue < playValue[i]){
                     maxValue = playValue[i];
                     locationStart = i;
@@ -762,7 +772,7 @@ public class Ztack extends javax.swing.JFrame {
         pileLabel1.setText("Deck");
 
         Title.setFont(new java.awt.Font("Verdana", 1, 36)); // NOI18N
-        Title.setText("ZTack");
+        Title.setText("ZTack!");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -849,15 +859,11 @@ public class Ztack extends javax.swing.JFrame {
                                         .addComponent(instructionsButton)
                                         .addGap(107, 107, 107))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap())
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(newGameButton)
                                         .addGap(79, 79, 79)))
-                                .addComponent(playerPoint, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(Title)
-                                .addGap(60, 60, 60))
+                                .addComponent(playerPoint, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Title))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(totalLabel)
                                 .addGap(121, 121, 121))
@@ -901,7 +907,7 @@ public class Ztack extends javax.swing.JFrame {
                                         .addComponent(warningLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(deckButton, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(pileLabel)
                             .addComponent(pileLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
@@ -927,7 +933,7 @@ public class Ztack extends javax.swing.JFrame {
                             .addGap(93, 93, 93)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(totalLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(playerNameLabel)
                             .addComponent(AINameLabel))
