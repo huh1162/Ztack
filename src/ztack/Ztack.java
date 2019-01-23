@@ -204,7 +204,7 @@ public class Ztack extends javax.swing.JFrame {
         pileButton.setSelected(false);
         deckButton.setSelected(false);
         viewAIHandButton.setText("View  AI  Hand");
-        
+        viewAIHandButton.setVisible(false);
     }
 
     /**
@@ -245,7 +245,6 @@ public class Ztack extends javax.swing.JFrame {
         
         deckButton.setEnabled(false);
         playButton.setEnabled(true);
-        drawButton.setEnabled(true);
         ZTackButton.setEnabled(true);
 
         
@@ -275,7 +274,6 @@ public class Ztack extends javax.swing.JFrame {
         
         deckButton.setEnabled(true);
         playButton.setEnabled(false);
-        drawButton.setEnabled(false);
         ZTackButton.setEnabled(false);
         
         endGame.setEnabled(true);
@@ -365,6 +363,18 @@ public class Ztack extends javax.swing.JFrame {
     }
 
     /**
+     * checks if player can ZTack
+     */
+    public void ZTackCheck(){
+        if(playerHand.points() <= 6){
+            ZTackButton.setEnabled(true);
+        }
+        else{
+            ZTackButton.setEnabled(false);
+        }
+    }
+    
+    /**
      * ends the game if there are no more cards in the game
      */
     public void deckCheck(){
@@ -382,6 +392,15 @@ public class Ztack extends javax.swing.JFrame {
         }
     }
        
+    /**
+     * checks if player can draw
+     */
+    public void drawButtonCheck(){
+        if("14".equals(playerHand.cardsInHand[5].split(" ")[0])){
+            drawButton.setEnabled(true);
+        }
+    }
+    
     /**
      * resolves the AI declaring ZTack (win condition) & keeps track of the score
      */
@@ -403,8 +422,10 @@ public class Ztack extends javax.swing.JFrame {
         pileButton.setEnabled(false);
         deckButton.setEnabled(false);
         newGameButton.setEnabled(false);
+        viewAIHandButton.setVisible(true);
         viewAIHandButton.setEnabled(true);   
         warningLabel.setText("");
+        drawButton.setEnabled(false);
         winCheck();
     }
 
@@ -554,6 +575,7 @@ public class Ztack extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 0));
+        setResizable(false);
 
         cardOne1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cardBack_full.png"))); // NOI18N
         cardOne1.setEnabled(false);
@@ -680,6 +702,7 @@ public class Ztack extends javax.swing.JFrame {
         pileLabel.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         pileLabel.setText("Pile");
 
+        pileButton.setBackground(new java.awt.Color(0, 0, 0));
         pileButton.setEnabled(false);
         pileButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -763,13 +786,13 @@ public class Ztack extends javax.swing.JFrame {
             }
         });
 
+        instructionsLabel.setEditable(false);
         instructionsLabel.setBackground(new java.awt.Color(240, 240, 240));
         instructionsLabel.setColumns(20);
         instructionsLabel.setLineWrap(true);
         instructionsLabel.setRows(5);
         instructionsLabel.setWrapStyleWord(true);
         instructionsLabel.setFocusable(false);
-        instructionsLabel.setOpaque(false);
         jScrollPane1.setViewportView(instructionsLabel);
 
         pileLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -811,7 +834,10 @@ public class Ztack extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cardTwo6, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(result, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(drawButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(381, 381, 381)
                         .addComponent(pileLabel)
@@ -835,8 +861,6 @@ public class Ztack extends javax.swing.JFrame {
                                 .addComponent(cardOne6, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(36, 36, 36))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(drawButton)
-                                .addGap(89, 89, 89)
                                 .addComponent(viewAIHandButton)
                                 .addGap(18, 18, 18)
                                 .addComponent(ZTackButton)
@@ -907,7 +931,9 @@ public class Ztack extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(result, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(86, 86, 86)
+                                        .addGap(32, 32, 32)
+                                        .addComponent(drawButton)
+                                        .addGap(31, 31, 31)
                                         .addComponent(warningLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(deckButton, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -916,9 +942,7 @@ public class Ztack extends javax.swing.JFrame {
                             .addComponent(pileLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(viewAIHandButton)
-                                .addComponent(drawButton))
+                            .addComponent(viewAIHandButton, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(ZTackButton))
                         .addGap(8, 8, 8)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1117,7 +1141,9 @@ public class Ztack extends javax.swing.JFrame {
         startButton.setEnabled(false);
         result.setText("");
         warningLabel.setText("");
-        
+        drawButton.setEnabled(false);
+        ZTackCheck();
+
         goesFirst();
     }//GEN-LAST:event_startButtonActionPerformed
 
@@ -1136,6 +1162,8 @@ public class Ztack extends javax.swing.JFrame {
         displayPile(pile);
         points.setText("Hand Points: " + playerHand.points());
         deckCheck();
+        drawButtonCheck();
+        ZTackCheck();
     }//GEN-LAST:event_pileButtonActionPerformed
 
     private void deckButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deckButtonActionPerformed
@@ -1150,6 +1178,8 @@ public class Ztack extends javax.swing.JFrame {
         displayPile(pile);
         points.setText("Hand Points: " + playerHand.points());
         deckCheck();
+        drawButtonCheck();
+        ZTackCheck();
     }//GEN-LAST:event_deckButtonActionPerformed
 
     // plays the users selected card and gives the ability to draw a card
@@ -1169,6 +1199,7 @@ public class Ztack extends javax.swing.JFrame {
             disableButtons();
             pileButton.setEnabled(false);
             warningLabel.setText("Draw a card.");
+            drawButton.setEnabled(false);
         }
         else{
             warningLabel.setText("You cannot draw over your maximum hand size.");
@@ -1228,8 +1259,10 @@ public class Ztack extends javax.swing.JFrame {
             pileButton.setEnabled(false);
             deckButton.setEnabled(false);
             newGameButton.setEnabled(false);
+            viewAIHandButton.setVisible(true);
             viewAIHandButton.setEnabled(true);
             warningLabel.setText("");
+            drawButton.setEnabled(false);
             
             winCheck();
         }
@@ -1257,6 +1290,7 @@ public class Ztack extends javax.swing.JFrame {
         InsState++; 
         if(InsState%2 == 1){
             instructionsButton.setText("Hide Instructions");
+            instructionsLabel.setVisible(true);
             try (FileReader reader = new FileReader("src/instructions.txt")) {
                 instructionsLabel.read(reader, null);
             }
@@ -1266,6 +1300,7 @@ public class Ztack extends javax.swing.JFrame {
         else{
             instructionsButton.setText("View Instructions");
             instructionsLabel.setText("");
+            instructionsLabel.setVisible(false);
         }
         
     }//GEN-LAST:event_instructionsButtonActionPerformed
@@ -1274,7 +1309,6 @@ public class Ztack extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
