@@ -398,7 +398,6 @@ public class Ztack extends javax.swing.JFrame {
     public void drawButtonCheck(){
         if("14".equals(playerHand.cardsInHand[5].split(" ")[0])){
             drawButton.setEnabled(true);
-            System.out.println("True");
         }
     }
     
