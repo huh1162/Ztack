@@ -408,10 +408,8 @@ public class Ztack extends javax.swing.JFrame {
         if (AIHand.points() < playerHand.points()) {
             result.setText("You got Ztacked...");
             playerPoints += playerHand.points();
-            AIPoints += AIHand.points();
         } else if (AIHand.points() >= playerHand.points()) {
             result.setText("You Ztacked him!");
-            playerPoints += playerHand.points();
             AIPoints += AIHand.points() + 27;
         }
         playerPoint.setText(Integer.toString(playerPoints));
@@ -1136,8 +1134,6 @@ public class Ztack extends javax.swing.JFrame {
         resetState();
         enableButtons();
         points.setText("Hand Points: " + playerHand.points());
-
-        
         startButton.setEnabled(false);
         result.setText("");
         warningLabel.setText("");
@@ -1244,10 +1240,8 @@ public class Ztack extends javax.swing.JFrame {
             if (AIHand.points() <= playerHand.points()) {
                 result.setText("You got Ztacked...");
                 playerPoints += playerHand.points() + 27;
-                AIPoints += AIHand.points();
             } else if (AIHand.points() > playerHand.points()) {
                 result.setText("You Ztacked him!");
-                playerPoints += playerHand.points();
                 AIPoints += AIHand.points();   
             }
             playerPoint.setText(Integer.toString(playerPoints));
