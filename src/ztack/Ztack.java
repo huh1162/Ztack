@@ -398,6 +398,7 @@ public class Ztack extends javax.swing.JFrame {
     public void drawButtonCheck(){
         if("14".equals(playerHand.cardsInHand[5].split(" ")[0])){
             drawButton.setEnabled(true);
+            System.out.println("True");
         }
     }
     
@@ -426,6 +427,7 @@ public class Ztack extends javax.swing.JFrame {
         viewAIHandButton.setEnabled(true);   
         warningLabel.setText("");
         drawButton.setEnabled(false);
+        ZTackButton.setEnabled(false);
         winCheck();
     }
 
@@ -1158,11 +1160,11 @@ public class Ztack extends javax.swing.JFrame {
         playerHand.play(selected, playerHand, pile, true, deck); 
         displayHand(playerHand, false);
         enableButtons();
+        drawButtonCheck();
         AIPlay();
         displayPile(pile);
         points.setText("Hand Points: " + playerHand.points());
         deckCheck();
-        drawButtonCheck();
         ZTackCheck();
     }//GEN-LAST:event_pileButtonActionPerformed
 
@@ -1174,11 +1176,11 @@ public class Ztack extends javax.swing.JFrame {
         playerHand.draw(deck); //... and draw a card
         displayHand(playerHand, false);
         enableButtons();
+        drawButtonCheck();
         AIPlay();
         displayPile(pile);
         points.setText("Hand Points: " + playerHand.points());
         deckCheck();
-        drawButtonCheck();
         ZTackCheck();
     }//GEN-LAST:event_deckButtonActionPerformed
 
